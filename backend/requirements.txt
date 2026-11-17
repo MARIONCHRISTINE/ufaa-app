@@ -1,0 +1,12 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+motor==3.6.0
+pymongo==4.9.2
+pydantic-settings==2.7.1
+bcrypt==4.2.1
+python-multipart==0.0.20
+openpyxl==3.1.5
+reportlab==4.2.5
+tzdata==2024.2
+# Only needed by scripts/migrate_from_mysql.py (one-time import of the old MySQL data)
+PyMySQL==1.1.1

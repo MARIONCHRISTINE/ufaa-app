@@ -1,0 +1,141 @@
+@import './palette.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens (light values copied from the PHP portal's style.css / admin.css) ── */
+:root,
+.theme-light {
+  --page: 245 245 245;      /* #f5f5f5 page background */
+  --surface: 255 255 255;   /* cards, sidebar, modals */
+  --ink: 26 26 26;          /* #1a1a1a table headers */
+  --heading: 30 58 95;      /* #1e3a5f admin navy headings */
+  color-scheme: light;
+}
+
+.dark {
+  --page: 14 16 20;
+  --surface: 23 26 32;
+  --ink: 9 10 13;
+  --heading: 157 184 221;
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-page font-sans text-slate-900 antialiased;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #cc0000 rgb(var(--slate-200));
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-surface shadow-[0_2px_12px_rgba(0,0,0,0.04)];
+  }
+  .card-title {
+    @apply flex items-center gap-2 font-bold text-heading;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-2.5 text-sm font-bold transition-all duration-200
+      disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-airtel text-white shadow-[0_4px_12px_rgba(204,0,0,0.2)] hover:-translate-y-px hover:bg-[#a80000]
+      hover:shadow-[0_6px_16px_rgba(204,0,0,0.3)];
+  }
+  .btn-outline {
+    @apply btn border border-slate-200 bg-slate-50 font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-900;
+  }
+  .btn-ghost {
+    @apply btn font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-900;
+  }
+  .btn-success {
+    @apply btn bg-green-600 text-white shadow-[0_4px_12px_rgba(22,163,74,0.25)] hover:bg-green-700;
+  }
+  .btn-sm {
+    @apply rounded-lg px-3 py-1.5 text-xs;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-200 bg-surface px-3.5 py-2 text-sm text-slate-900 transition-colors
+      placeholder:text-slate-400 focus:border-airtel focus:outline-none focus:ring-[3px] focus:ring-airtel/10;
+  }
+  .label {
+    @apply mb-1.5 block text-[0.78rem] font-bold uppercase tracking-[0.5px] text-slate-500;
+  }
+  .filters-panel {
+    @apply rounded-xl border border-slate-200 bg-slate-50 p-5;
+  }
+  .table-wrap {
+    @apply overflow-auto rounded-xl border border-slate-200;
+  }
+  .table-head th {
+    @apply sticky top-0 z-10 whitespace-nowrap border-b-2 border-airtel bg-ink px-[1.1rem] py-4 text-left text-[0.72rem]
+      font-semibold uppercase tracking-[1px] text-[#e5e7eb];
+  }
+  .table-body td {
+    @apply whitespace-nowrap border-b border-slate-100 bg-surface px-[1.1rem] py-[0.95rem] align-middle text-[0.9rem];
+  }
+  .table-body tr:nth-child(even) td {
+    @apply bg-slate-50;
+  }
+  .table-body tr:hover td {
+    @apply bg-red-50;
+  }
+  .table-body tr:last-child td {
+    @apply border-b-0;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1 text-[0.78rem] font-bold;
+  }
+  /* Status badges — same tints as the PHP .status-badge classes */
+  .badge-claimed { @apply border-green-600/25 bg-green-600/[0.08] text-green-600; }
+  .badge-unclaimed { @apply border-orange-600/25 bg-orange-600/[0.08] text-orange-600; }
+  .badge-letter { @apply border-sky-300 bg-sky-100 text-sky-600; }
+  .badge-submitted { @apply border-violet-300 bg-violet-100 text-violet-700; }
+  .badge-blue { @apply border-blue-600/25 bg-blue-600/[0.08] text-blue-600; }
+  .badge-rose { @apply border-red-600/25 bg-red-600/[0.08] text-red-600; }
+  .badge-neutral { @apply border-slate-200 bg-slate-100 text-slate-600; }
+  .btn-pdf {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-md bg-gradient-to-br from-airtel to-[#b30000] px-3 py-1.5
+      text-[0.78rem] font-bold text-white shadow-[0_2px_6px_rgba(237,28,36,0.25)] transition hover:-translate-y-px
+      hover:from-[#cc0000] hover:to-[#990000];
+  }
+}
+
+/* Admin portal headings are navy, like the PHP admin.css (.admin-page-header h2). */
+.admin-portal .page-title {
+  color: rgb(var(--heading));
+}
+
+@keyframes ufaa-icon-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.brand-pulse {
+  animation: ufaa-icon-pulse 3s infinite;
+}
+
+@keyframes jump-flash {
+  0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
+  50% { box-shadow: inset 0 0 0 3px #1d4ed8; }
+}
+.jump-highlight {
+  animation: jump-flash 0.6s ease-in-out 3;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.toast-in {
+  animation: toast-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25) forwards;
+}
+
+@media print {
+  .no-print { display: none !important; }
+}

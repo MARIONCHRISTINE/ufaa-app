@@ -1,0 +1,21 @@
+# Python
+backend/.venv/
+backend/storage/
+__pycache__/
+*.pyc
+
+# Secrets: only the example config is committed
+.env
+.env.*
+!.env.example
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Logs and editor/OS files
+*.log
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
