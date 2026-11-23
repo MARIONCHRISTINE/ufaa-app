@@ -37,3 +37,17 @@ ERROR:    Application startup failed. Exiting.
 
 23203159@KE-23203159-WL1 MINGW64 ~/OneDrive - Airtel Africa/Compliance/GRC/ufaa-app/backend (main)
 $
+
+# Copy this file to .env and adjust if needed.
+MONGO_URL=mongodb+srv://23203159_db_user:hidden by me, i have included my password@cluster0.bpzm0ts.mongodb.net/
+
+# Comma-separated list of origins allowed to call the API (the React dev server).
+CORS_ORIGINS=http://localhost:5173
+
+# Where uploaded stamped letters, generated submission files and temp files are stored.
+STORAGE_DIR=storage
+
+TIMEZONE=Africa/Nairobi
+
+# Password for the seeded "admin" account, used only when the users collection is empty.
+DEFAULT_ADMIN_PASSWORD=hidden by me
